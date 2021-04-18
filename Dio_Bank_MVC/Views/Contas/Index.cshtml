@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Dio_Bank_MVC.Models.Conta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Agencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroConta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DigitoVerificador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saldo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCriacao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroConta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DigitoVerificador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saldo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCriacao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdConta">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdConta">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdConta">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

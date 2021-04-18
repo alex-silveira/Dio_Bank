@@ -1,0 +1,153 @@
+﻿@model Dio_Bank_MVC.Models.Transferencia
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="mb-4">Transferência entre contas</h2>
+
+<div class="row">
+    <div class="col-8">
+        <hr class="line">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <ul class="pagination pagination-lg">
+            <li class="page-item disabled col-4">
+                <a class="page-link text-center rounded-circle ml-4" href="#" tabindex="-1">1</a>
+                <p class="page-item text-left">PREENCHIMENTO</p>
+            </li>
+            <li class="page-item col-4">
+                <a class="page-link text-center rounded-circle ml-4" href="#">2</a>
+                <p class="page-item text-left">CONFIRMAÇÃO</p>
+            </li>
+            <li class="page-item  col-4">
+                <a class="page-link text-center rounded-circle ml-4" href="#">3</a>
+                <p class="page-item text-left">COMPROVANTE</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="Agencia" class="col-sm-3 col-form-label">Agência: </label>
+                <div class="col-sm-3">
+                    <input asp-for="Agencia" class="form-control" id="inputAgencia">
+                </div>
+                <span asp-validation-for="Agencia" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Conta" class="col-sm-3 col-form-label">Conta | DV: </label>
+                <div class="col-sm-3 mb-2">
+                    <input asp-for="Conta" class="form-control" id="inputConta">
+                </div>
+                <span asp-validation-for="Conta" class="text-danger"></span>
+
+                <div class="col-sm-1">
+                    <input asp-for="DigitoVerificador" class="form-control" id="inputDv">
+                </div>
+                <span asp-validation-for="DigitoVerificador" class="text-danger"></span>
+
+            </div>
+            <div class="form-group row">
+                <label asp-for="TipoConta" class="col-sm-3 col-form-label">Tipo: </label>
+                <div class="col-sm-4">
+                    <select asp-for="TipoConta" class="custom-select" id="inputTipoConta">
+                        <option value="1" selected>Poupança Pessoa Física</option>
+                        <option value="2">Poupança Pessoa Jurídica</option>
+                    </select>
+                </div>
+                <span asp-validation-for="TipoConta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="Valor" class="col-sm-3 col-form-label">Valor a ser transferido: </label>
+                <div class="col-sm-3">
+                    <input asp-for="Valor" class="form-control" id="inputValor">
+                </div>
+                <span asp-validation-for="Valor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-3 col-form-label">Identificação da transferência: </label>
+                <div class="col-sm-3">
+                    <input class="form-control" id="inputIdentificacao">
+                </div>
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+
+            <fieldset class="form-group bg-light p-4 border">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Data" name="transferirHoje" id="rbTransferirHoje" value="option1" checked>
+                            <label class="form-check-label" asp-for="Data">
+                                Transferir hoje 25/03/2021
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" asp-for="Data" name="agendarTransferencia" id="rbAgendarTransferencia" value="option2">
+                            <label class="form-check-label" asp-for="Data">
+                                Agendar Transferência para (dd/mm/aa)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <div class="form-check">
+                        <input asp-for="RepetirProximosMeses" class="form-check-input" id="gridCheck1">
+                        <label class="form-check-label" asp-for="RepetirProximosMeses">
+                            Desejo que a operação se repita automaticamente nos próximos meses
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-5 col-form-label">
+                    Quantas vezes você deseja que a operação aconteça
+                </label>
+                <div class="col-sm-3">
+                    <input type="email" class="form-control" id="inputEmail3">
+                </div>
+            </div>
+
+            <fieldset class="form-group bg-light p-4 border">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <p>
+                            1. Observar o Valor Limite estabelecido no link Horários e Limites do serviço.
+                        </p>
+                        <p>
+                            2. Para cancelar esta transação no futuro basta acessar a opção "Agendadas", no item "Minhas Transações - Transações" e solicitar o cancelamento.
+                        </p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <button type="submit" id="btContinuar">Continuar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
